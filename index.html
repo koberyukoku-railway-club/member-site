@@ -111,12 +111,12 @@
             <!-- メニューリンク -->
             <div class="menu">
                 <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/mainpage/', 'メインページ')">メインページ</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-calendar/', 'カレンダー')">カレンダー</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-notice/', 'お知らせ')">お知らせ</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-folder/', '共有フォルダ')">共有フォルダ</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-survey/', 'アンケート')">アンケート</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-request/', '各種申請')">各種申請</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-database/', '本部データベース')">本部データベース</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/calendar/', 'カレンダー')">カレンダー</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/notice/', 'お知らせ')">お知らせ</a>
+                <a href="#" onclick="openInNewTab('https://drive.google.com/drive/folders/1-g_w7hCKDiTff6ASkGtjMjK_zcE0ACb6')">共有フォルダ</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/survey/', 'アンケート')">アンケート</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/request/', '各種申請')">各種申請</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/database/', '本部データベース')">本部データベース</a>
             </div>
 
             <!-- 検索バー -->
@@ -140,6 +140,11 @@
         function updateContent(url, title) {
             document.getElementById('iframe-content').src = url;
             document.title = title + ' - 鉄研ポータル';
+        }
+
+        // 共有フォルダは別タブで開く
+        function openInNewTab(url) {
+            window.open(url, '_blank');
         }
     </script>
 </body>
