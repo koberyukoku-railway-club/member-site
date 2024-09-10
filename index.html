@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鉄研ポータル</title>
+    <title>鉄研ポータル - ログイン</title>
     <link rel="icon" type="image/png" href="https://i.gyazo.com/8fa16c85fd51889eed05517d158ed624.png" />
     <style>
         body {
@@ -11,9 +11,50 @@
             font-family: 'Arial', sans-serif;
         }
 
+        /* ログイン画面のスタイル */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .login-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-box button:hover {
+            background-color: #45a049;
+        }
+
         /* メニューバーとコンテンツを上下に分ける */
         .container {
-            display: flex;
+            display: none;
             flex-direction: column;
             height: 100vh;
         }
@@ -30,7 +71,7 @@
 
         /* ロゴのスタイル */
         .logo {
-            width: 75px; /* ロゴのサイズを半分に調整 */
+            width: 75px;
             margin-right: 20px;
         }
 
@@ -47,44 +88,45 @@
             font-size: 14px;
         }
 
-        /* 検索ボックスとボタンをくっつける */
-        .search-bar {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-
-        .search-bar input[type="text"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-right: none; /* ボタンとの間の境界線をなくす */
-            border-radius: 3px 0 0 3px; /* 左側の角を丸くする */
-            font-size: 14px;
-        }
-
-        .search-bar button {
-            padding: 5px 10px;
-            border: 1px solid #ccc; /* 全体にボーダーを追加 */
-            background-color: #ccc;
-            color: white;
-            border-radius: 0 3px 3px 0; /* 右側の角を丸くする */
-            margin-left: -1px; /* ボタンと入力欄をぴったりくっつける */
-            cursor: pointer;
-        }
-
-        /* アイコンのスタイル */
+        /* アカウントロゴ */
         .icon {
             width: 40px;
             height: 40px;
-            background-color: purple;
-            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
             font-weight: bold;
+            color: white;
             margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* ログアウトボックス */
+        .logout-box {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-box button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-box button:hover {
+            background-color: #d32f2f;
         }
 
         /* コンテンツのスタイル */
@@ -100,52 +142,106 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- メニューバー -->
-        <div class="navbar">
-            <!-- ロゴ -->
-            <a href="https://koberyukoku-railway-club.github.io/member-site/mainpage/">
-                <img src="https://i.gyazo.com/aeb75bbf2ca6c43d590f750bcabe0d50.png" alt="鉄研ロゴ" class="logo">
-            </a>
-            
-            <!-- メニューリンク -->
-            <div class="menu">
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/mainpage/', 'メインページ')">メインページ</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/calendar/', 'カレンダー')">カレンダー</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/notice/', 'お知らせ')">お知らせ</a>
-                <a href="#" onclick="openInNewTab('https://drive.google.com/drive/folders/1-g_w7hCKDiTff6ASkGtjMjK_zcE0ACb6')">共有フォルダ</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/survey/', 'アンケート')">アンケート</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/request/', '各種申請')">各種申請</a>
-                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/database/', '本部データベース')">本部データベース</a>
-            </div>
 
-            <!-- 検索バー -->
-            <div class="search-bar">
-                <input type="text" placeholder="検索">
-                <button>検索</button>
-            </div>
+<!-- ログイン画面 -->
+<div class="login-container">
+    <div class="login-box">
+        <h2>ログイン</h2>
+        <input type="text" id="login-name" placeholder="名前">
+        <input type="text" id="login-id" placeholder="ID">
+        <input type="password" id="login-password" placeholder="パスワード">
+        <button onclick="login()">ログイン</button>
+    </div>
+</div>
 
-            <!-- アイコン -->
-            <div class="icon">鉄研</div>
+<!-- ポータル画面 -->
+<div class="container">
+    <div class="navbar">
+        <a href="https://koberyukoku-railway-club.github.io/member-site/mainpage/">
+            <img src="https://i.gyazo.com/aeb75bbf2ca6c43d590f750bcabe0d50.png" alt="鉄研ロゴ" class="logo">
+        </a>
+
+        <div class="menu">
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/mainpage/', 'メインページ')">メインページ</a>
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/calendar/', 'カレンダー')">カレンダー</a>
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/notice/', 'お知らせ')">お知らせ</a>
+            <a href="#" onclick="openInNewTab('https://drive.google.com/drive/folders/1-g_w7hCKDiTff6ASkGtjMjK_zcE0ACb6')">共有フォルダ</a>
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/survey/', 'アンケート')">アンケート</a>
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/request/', '各種申請')">各種申請</a>
+            <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/database/', '本部データベース')">本部データベース</a>
         </div>
 
-        <!-- コンテンツ表示エリア -->
-        <div class="content">
-            <iframe src="https://koberyukoku-railway-club.github.io/member-site/mainpage/" id="iframe-content"></iframe>
+        <!-- アカウントロゴ -->
+        <div id="account-icon" class="icon" onclick="toggleLogoutBox()"></div>
+
+        <!-- ログアウトボックス -->
+        <div class="logout-box" id="logout-box">
+            <button onclick="logout()">ログアウト</button>
         </div>
     </div>
 
-    <script>
-        // メニュークリック時に iframe の内容を更新
-        function updateContent(url, title) {
-            document.getElementById('iframe-content').src = url;
-            document.title = title + ' - 鉄研ポータル';
-        }
+    <div class="content">
+        <iframe src="https://koberyukoku-railway-club.github.io/member-site/mainpage/" id="iframe-content"></iframe>
+    </div>
+</div>
 
-        // 共有フォルダは別タブで開く
-        function openInNewTab(url) {
-            window.open(url, '_blank');
+<script>
+    const users = [
+        { name: '鉄道研究会', id: 'admin', password: 'xctsw2zP2Z', displayName: '鉄研', color: 'purple' },
+        { name: '武内悠祐', id: 'takeuchi', password: 'Yusuke114514', displayName: '武内', color: 'blue' },
+        { name: '二階堂宏紀', id: 'nikaido', password: 'Koki0831', displayName: '二', color: 'green' },
+        { name: '本谷元', id: 'hontani', password: 'Hajime0312', displayName: '本谷', color: 'orange' },
+        { name: '三栗谷悠斗', id: 'mikuriya', password: 'Yuto1331', displayName: '三', color: 'red' },
+        { name: '館野陽亮', id: 'tateno', password: 'Yosuke2929', displayName: '館野', color: 'yellow' },
+        { name: '有津楽人', id: 'aritsu', password: 'Gakkun5555', displayName: '有津', color: 'cyan' },
+        { name: '中嶋拓人', id: 'nakashima', password: 'Takkun114514', displayName: '中嶋', color: 'pink' },
+        { name: '四村嶺伯', id: 'shimura', password: 'Minetake8888', displayName: '四村', color: 'brown' },
+        { name: '荒川航太郎', id: 'arakawa', password: 'Kotaro1357', displayName: '荒川', color: 'lime' },
+        { name: '植田光一郎', id: 'ueda', password: 'Koichiro1111', displayName: '植田', color: 'teal' },
+        { name: '岸田悠', id: 'kishida', password: 'Haru4678', displayName: '岸田', color: 'purple' },
+        { name: '服部湧仁', id: 'hattori', password: 'wakuto8765', displayName: '服部', color: 'indigo' },
+        { name: '松本誠司', id: 'matsumoto', password: 'Seiji9999', displayName: '松本', color: 'salmon' },
+        { name: '貸し出し１', id: 'tetuken1', password: 'Password1', displayName: '貸１', color: 'gray' },
+        { name: '貸し出し２', id: 'tetuken2', password: 'Password2', displayName: '貸２', color: 'navy' },
+        { name: '貸し出し３', id: 'tetuken3', password: 'Password3', displayName: '貸３', color: 'olive' },
+    ];
+
+    function login() {
+        const name = document.getElementById('login-name').value;
+        const id = document.getElementById('login-id').value;
+        const password = document.getElementById('login-password').value;
+
+        const user = users.find(u => u.name === name && u.id === id && u.password === password);
+
+        if (user) {
+            document.querySelector('.login-container').style.display = 'none';
+            document.querySelector('.container').style.display = 'flex';
+            document.getElementById('account-icon').textContent = user.displayName;
+            document.getElementById('account-icon').style.backgroundColor = user.color;
+        } else {
+            alert('ログイン情報が正しくありません。');
         }
-    </script>
+    }
+
+    function toggleLogoutBox() {
+        const logoutBox = document.getElementById('logout-box');
+        logoutBox.style.display = logoutBox.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function logout() {
+        document.querySelector('.login-container').style.display = 'flex';
+        document.querySelector('.container').style.display = 'none';
+    }
+
+    function updateContent(url, title) {
+        document.getElementById('iframe-content').src = url;
+        document.title = title + ' - 鉄研ポータル';
+    }
+
+    function openInNewTab(url) {
+        window.open(url, '_blank');
+    }
+</script>
+
 </body>
 </html>
