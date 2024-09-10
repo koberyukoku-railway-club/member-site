@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鉄研ポータル</title>
+    <link rel="icon" type="image/png" href="https://i.gyazo.com/8fa16c85fd51889eed05517d158ed624.png" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* メニューバーとコンテンツを上下に分ける */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* メニューバーのスタイル */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ロゴのスタイル */
+        .logo {
+            width: 75px; /* ロゴのサイズを半分に調整 */
+            margin-right: 20px;
+        }
+
+        /* メニューリンクのスタイル */
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        /* 検索ボックスとボタンをくっつける */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-right: none; /* ボタンとの間の境界線をなくす */
+            border-radius: 3px 0 0 3px; /* 左側の角を丸くする */
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            border: 1px solid #ccc; /* 全体にボーダーを追加 */
+            background-color: #ccc;
+            color: white;
+            border-radius: 0 3px 3px 0; /* 右側の角を丸くする */
+            margin-left: -1px; /* ボタンと入力欄をぴったりくっつける */
+            cursor: pointer;
+        }
+
+        /* アイコンのスタイル */
+        .icon {
+            width: 40px;
+            height: 40px;
+            background-color: purple;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        /* コンテンツのスタイル */
+        .content {
+            flex-grow: 1;
+        }
+
+        .content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- メニューバー -->
+        <div class="navbar">
+            <!-- ロゴ -->
+            <a href="https://koberyukoku-railway-club.github.io/member-site/mainpage/">
+                <img src="https://i.gyazo.com/aeb75bbf2ca6c43d590f750bcabe0d50.png" alt="鉄研ロゴ" class="logo">
+            </a>
+            
+            <!-- メニューリンク -->
+            <div class="menu">
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site/mainpage/', 'メインページ')">メインページ</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-calendar/', 'カレンダー')">カレンダー</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-notice/', 'お知らせ')">お知らせ</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-folder/', '共有フォルダ')">共有フォルダ</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-survey/', 'アンケート')">アンケート</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-request/', '各種申請')">各種申請</a>
+                <a href="#" onclick="updateContent('https://koberyukoku-railway-club.github.io/member-site-database/', '本部データベース')">本部データベース</a>
+            </div>
+
+            <!-- 検索バー -->
+            <div class="search-bar">
+                <input type="text" placeholder="検索">
+                <button>検索</button>
+            </div>
+
+            <!-- アイコン -->
+            <div class="icon">鉄研</div>
+        </div>
+
+        <!-- コンテンツ表示エリア -->
+        <div class="content">
+            <iframe src="https://koberyukoku-railway-club.github.io/member-site/mainpage/" id="iframe-content"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // メニュークリック時に iframe の内容を更新
+        function updateContent(url, title) {
+            document.getElementById('iframe-content').src = url;
+            document.title = title + ' - 鉄研ポータル';
+        }
+    </script>
+</body>
+</html>
