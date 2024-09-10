@@ -147,7 +147,6 @@
 <div class="login-container">
     <div class="login-box">
         <h2>ログイン</h2>
-        <input type="text" id="login-name" placeholder="名前">
         <input type="text" id="login-id" placeholder="ID">
         <input type="password" id="login-password" placeholder="パスワード">
         <button onclick="login()">ログイン</button>
@@ -187,31 +186,30 @@
 
 <script>
     const users = [
-        { name: '鉄道研究会', id: 'admin', password: 'xctsw2zP2Z', displayName: '鉄研', color: 'purple' },
-        { name: '武内悠祐', id: 'takeuchi', password: 'Yusuke114514', displayName: '武内', color: 'blue' },
-        { name: '二階堂宏紀', id: 'nikaido', password: 'Koki0831', displayName: '二', color: 'green' },
-        { name: '本谷元', id: 'hontani', password: 'Hajime0312', displayName: '本谷', color: 'orange' },
-        { name: '三栗谷悠斗', id: 'mikuriya', password: 'Yuto1331', displayName: '三', color: 'red' },
-        { name: '館野陽亮', id: 'tateno', password: 'Yosuke2929', displayName: '館野', color: 'yellow' },
-        { name: '有津楽人', id: 'aritsu', password: 'Gakkun5555', displayName: '有津', color: 'cyan' },
-        { name: '中嶋拓人', id: 'nakashima', password: 'Takkun114514', displayName: '中嶋', color: 'pink' },
-        { name: '四村嶺伯', id: 'shimura', password: 'Minetake8888', displayName: '四村', color: 'brown' },
-        { name: '荒川航太郎', id: 'arakawa', password: 'Kotaro1357', displayName: '荒川', color: 'lime' },
-        { name: '植田光一郎', id: 'ueda', password: 'Koichiro1111', displayName: '植田', color: 'teal' },
-        { name: '岸田悠', id: 'kishida', password: 'Haru4678', displayName: '岸田', color: 'purple' },
-        { name: '服部湧仁', id: 'hattori', password: 'wakuto8765', displayName: '服部', color: 'indigo' },
-        { name: '松本誠司', id: 'matsumoto', password: 'Seiji9999', displayName: '松本', color: 'salmon' },
-        { name: '貸し出し１', id: 'tetuken1', password: 'Password1', displayName: '貸１', color: 'gray' },
-        { name: '貸し出し２', id: 'tetuken2', password: 'Password2', displayName: '貸２', color: 'navy' },
-        { name: '貸し出し３', id: 'tetuken3', password: 'Password3', displayName: '貸３', color: 'olive' },
+        { id: 'admin', password: 'xctsw2zP2Z', displayName: '鉄研', color: 'purple' },
+        { id: 'takeuchi', password: 'Yusuke114514', displayName: '武内', color: 'blue' },
+        { id: 'nikaido', password: 'Koki0831', displayName: '二', color: 'green' },
+        { id: 'hontani', password: 'Hajime0312', displayName: '本谷', color: 'orange' },
+        { id: 'mikuriya', password: 'Yuto1331', displayName: '三', color: 'red' },
+        { id: 'tateno', password: 'Yosuke2929', displayName: '館野', color: 'yellow' },
+        { id: 'aritsu', password: 'Gakkun5555', displayName: '有津', color: 'cyan' },
+        { id: 'nakashima', password: 'Takkun114514', displayName: '中嶋', color: 'pink' },
+        { id: 'shimura', password: 'Minetake8888', displayName: '四村', color: 'brown' },
+        { id: 'arakawa', password: 'Kotaro1357', displayName: '荒川', color: 'lime' },
+        { id: 'ueda', password: 'Koichiro1111', displayName: '植田', color: 'teal' },
+        { id: 'kishida', password: 'Haru4678', displayName: '岸田', color: 'purple' },
+        { id: 'hattori', password: 'wakuto8765', displayName: '服部', color: 'indigo' },
+        { id: 'matsumoto', password: 'Seiji9999', displayName: '松本', color: 'salmon' },
+        { id: 'tetuken1', password: 'Password1', displayName: '貸１', color: 'gray' },
+        { id: 'tetuken2', password: 'Password2', displayName: '貸２', color: 'navy' },
+        { id: 'tetuken3', password: 'Password3', displayName: '貸３', color: 'olive' },
     ];
 
     function login() {
-        const name = document.getElementById('login-name').value;
         const id = document.getElementById('login-id').value;
         const password = document.getElementById('login-password').value;
 
-        const user = users.find(u => u.name === name && u.id === id && u.password === password);
+        const user = users.find(u => u.id === id && u.password === password);
 
         if (user) {
             document.querySelector('.login-container').style.display = 'none';
